@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<title>Number Incrementer</title>
+
+	<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  width: 50px;
+  padding: 3px 0 0 0;
+  text-align: center;
+  border: 0;
+  border-top:1px solid #dddddd;
+  border-bottom:1px solid #dddddd;
+  height: 26px;
+  float: left;
+  font-size: 18px;
+  }
+
+.spin-button {
+    cursor: pointer;
+    width: 31px;
+    height: 31px;
+    text-align: center;
+    background-color: #dddddd;
+    color: #424242;
+    line-height: 31px;
+    font-size: 23px;
+    font-weight: bold;
+}
+.minus-number {
+    float: left;
+   
+}
+.plus-number {
+    float: left;
+}
+
+	</style>
+
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+  <script>
+  $(function() {
+
+  $(".spin-button").on("click", function() {
+
+    var $spinner = $(this);
+    var previousValue = $spinner.parent().find("input").val();
+
+    if ($spinner.text() == "+") {
+  	  var newVal = parseFloat(previousValue) + 1;
+  	} else {
+	   // Don't allow decrementing below zero
+      if (previousValue > 0) {
+        var newVal = parseFloat(previousValue) - 1;
+	    } else {
+        newVal = 0;
+      }
+	  }
+
+    $spinner.parent().find("input").val(newVal);
+
+  });
+
+});
+  </script>
+
+</head>
+
+<body>
+
+      <div class="numbers-row">
+       <div class="minus-number spin-button">-</div><input type="number"  value="3"><div class="plus-number spin-button">+</div>
+      </div>
+ 
+</body>
+
+</html>
