@@ -39,21 +39,21 @@
         <div id="slider" style="width: 800px">
             <div id="mover">
                 <div id="slide-1" class="slide">
-                    <h1>Garden Rack</h1>
+                    <h1>Slider 1</h1>
                     <p>
                         Donec gravida posuere arcu. Nulla facilisi. Phasellus imperdiet. Vestibulum at metus. Integer euismod. Nullam placerat rhoncus sapien. Ut euismod. Praesent libero. Morbi pellentesque libero sit amet ante. Maecenas
                         tellus.
                     </p>
                 </div>
                 <div class="slide">
-                    <h1>Tulip Bulbs</h1>
+                    <h1>Slider 2</h1>
                     <p>
                         Donec gravida posuere arcu. Nulla facilisi. Phasellus imperdiet. Vestibulum at metus. Integer euismod. Nullam placerat rhoncus sapien. Ut euismod. Praesent libero. Morbi pellentesque libero sit amet ante. Maecenas
                         tellus.
                     </p>
                 </div>
                 <div class="slide">
-                    <h1>Garden Gloves</h1>
+                    <h1>Slider 3</h1>
 
                     <p>
                         Donec gravida posuere arcu. Nulla facilisi. Phasellus imperdiet. Vestibulum at metus. Integer euismod. Nullam placerat rhoncus sapien. Ut euismod. Praesent libero. Morbi pellentesque libero sit amet ante. Maecenas
