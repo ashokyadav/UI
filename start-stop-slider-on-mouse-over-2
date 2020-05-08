@@ -1,5 +1,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <div id="slideshow">
     <div class="active"><h3>Caption for Slide 1</h3></div>
     <div> <h3 class="imgDescription">Caption for Slide 2</h3></div>
