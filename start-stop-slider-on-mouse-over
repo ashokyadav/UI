@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Start/Stop Slider</title>
+        <style>
+			*								{ margin: 0; padding: 0; }
+			body							{ font-family: "Lucida Grande", Arial, Sans-Serif; background: #222; }
+
+			a								{ text-decoration: none; outline: none; }
+			a img							{ border: none; }
+
+			h2								{ font-family: Georgia, Serif; font-size: 36px; text-align: center; 
+											  font-weight: normal; }
+
+			#page-wrap						{ background: white; width: 960px; margin: 0 auto; 
+											  padding: 50px 0; }
+
+			#slider							{ background: white; height: 227px; overflow: hidden;
+											  position: relative; margin: 50px 0; }
+											  
+											/* DEFAULT is for three panels in width, adjust as needed
+											   This only matters if JS is OFF, otherwise JS sets this. */								  
+			#mover							{ width: 2880px; position: relative; }
+
+			.slide							{ padding: 40px 30px; width: 900px; float: left; position: relative; }
+			.slide h1						{ font-family: Helvetica, Sans-Serif; font-size: 30px; letter-spacing: -1px;
+											  color: #ac0000; }
+			.slide p						{ color: #999; font-size: 12px; line-height: 22px; width: 300px; }
+			.slide img						{ position: absolute; top: 20px; left: 400px; }
+			#slider-stopper					{ position: absolute; top: 1px; right: 20px; background: #ac0000; color: white;
+											  padding: 3px 8px; font-size: 10px; text-transform: uppercase; z-index: 1000; }
+		</style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+    </head>
+
+    <body>
+        <div id="slider" style="width: 800px">
+            <div id="mover">
+                <div id="slide-1" class="slide">
+                    <h1>Garden Rack</h1>
+                    <p>
+                        Donec gravida posuere arcu. Nulla facilisi. Phasellus imperdiet. Vestibulum at metus. Integer euismod. Nullam placerat rhoncus sapien. Ut euismod. Praesent libero. Morbi pellentesque libero sit amet ante. Maecenas
+                        tellus.
+                    </p>
+                </div>
+                <div class="slide">
+                    <h1>Tulip Bulbs</h1>
+                    <p>
+                        Donec gravida posuere arcu. Nulla facilisi. Phasellus imperdiet. Vestibulum at metus. Integer euismod. Nullam placerat rhoncus sapien. Ut euismod. Praesent libero. Morbi pellentesque libero sit amet ante. Maecenas
+                        tellus.
+                    </p>
+                </div>
+                <div class="slide">
+                    <h1>Garden Gloves</h1>
+
+                    <p>
+                        Donec gravida posuere arcu. Nulla facilisi. Phasellus imperdiet. Vestibulum at metus. Integer euismod. Nullam placerat rhoncus sapien. Ut euismod. Praesent libero. Morbi pellentesque libero sit amet ante. Maecenas
+                        tellus.
+                    </p>
+                </div>
+            </div>
+        </div>
+		<script type="text/javascript">
+			// SET THIS VARIABLE FOR DELAY, 1000 = 1 SECOND
+var delayLength = 4000;
+	
+function doMove(panelWidth, tooFar) {
+	var leftValue = $("#mover").css("left");
+	
+	// Fix for IE
+	if (leftValue == "auto") { leftValue = 0; };
+	
+	var movement = parseFloat(leftValue, 10) - panelWidth;
+	
+	if (movement == tooFar) {
+		$(".slide").animate({
+			"top": 0
+		}, function() {
+			$("#mover").animate({
+				"left": 0
+			}, function() {
+				$(".slide img").animate({
+					"top": 0
+				});
+			});
+		});
+	}
+	else {
+		$(".slide").animate({
+			"top": 0
+		}, function() {
+			$("#mover").animate({
+				"left": movement
+			}, function() {
+				$(".slide").animate({
+					"top": 0
+				});
+			});
+		});
+	}
+}
+
+$(function(){
+	
+    var $slide1 = $("#slide-1");
+
+	var panelWidth = $slide1.css("width");
+	var panelPaddingLeft = $slide1.css("paddingLeft");
+	var panelPaddingRight = $slide1.css("paddingRight");
+
+	panelWidth = parseFloat(panelWidth, 10);
+	panelPaddingLeft = parseFloat(panelPaddingLeft, 10);
+	panelPaddingRight = parseFloat(panelPaddingRight, 10);
+
+	panelWidth = panelWidth + panelPaddingLeft + panelPaddingRight;
+	
+	var numPanels = $(".slide").length;
+	var tooFar = -(panelWidth * numPanels);
+	var totalMoverwidth = numPanels * panelWidth;
+	$("#mover").css("width", totalMoverwidth);
+
+	sliderIntervalID = setInterval(function(){
+		doMove(panelWidth, tooFar);
+	}, delayLength);
+	
+	$( "#mover" )
+	  .mouseover(function() {
+		clearInterval(sliderIntervalID);
+	  })
+	  .mouseout(function() {
+		sliderIntervalID = setInterval(function(){
+				doMove(panelWidth, tooFar);
+			}, delayLength);
+	  });
+});
+		</script>
+    </body>
+</html>
