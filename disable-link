@@ -1,0 +1,10 @@
+$('.filelink').unbind("click");
+$(document).on('click','.filelink',function(e){
+
+ e.preventDefault();
+
+ //code here
+
+ return false;
+
+});
