@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html,
+body {
+  overflow: hidden;
+  max-width: 100%
+}
+
+.notification-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  display: none;
+  height: 100%;
+  overflow: hidden;
+  background: #107b10;
+  z-index: 999;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+}
+
+.selected {
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}
+
+.dismiss {
+  animation: slide-out 0.5s forwards;
+  -webkit-animation: slide-out 0.5s forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    -webkit-transform: translateX(100%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+@-webkit-keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@-webkit-keyframes slide-out {
+  0% {
+    -webkit-transform: translateX(0%);
+  }
+  100% {
+    -webkit-transform: translateX(100%);
+  }
+}
+    </style>
+    <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<div class="notification-container dismiss">
+</div>
+
+<a id="showFilePanel">Open</a>
+<a id="closeFilePanel">Close</a>
+    <script type="text/javascript">
+        $('#showFilePanel').click(function(event) {
+  if ($('.notification-container').hasClass('dismiss')) {
+    $('.notification-container').removeClass('dismiss').addClass('selected').show();
+  }
+  event.preventDefault();
+});
+
+$('#closeFilePanel').click(function(event) {
+  if ($('.notification-container').hasClass('selected')) {
+    $('.notification-container').removeClass('selected').addClass('dismiss');
+  }
+  event.preventDefault();
+});
+    </script>
+</body>
+</html>
